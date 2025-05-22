@@ -3,6 +3,9 @@
 #include <sstream>
 #include "calc.cpp"
 
+#include <map>
+#include <functional>
+
 using namespace std;
 
 /**
@@ -32,21 +35,53 @@ double DetectNumber(const string& prompt)
     }
 }
 
+string DetectOperator(const string& prompt)
+{
+    string op;
+    string line;
+    while(true) {
+        cout << prompt;
+        getline(cin, op);     // 常に新しい行を読み込む
+
+        // opに演算子が含まれているかチェック
+        // 演算子は+、-、*、/のいずれか 
+        if(op == "+" || op == "-" || op == "*" || op == "/") {
+            return op;   // 有効値を返す 
+        } else {
+            cout << "Error. Enter only operator.";
+        }
+    }
+}
+
 int main()
 {
     Calc calc;
+
+    // 演算子の入力変数
+    string op;
 
     // 入力変数の用意
     int num1 = 0;
     int num2 = 0;
     
-    // 数値の入力
+    // 数値の入力1
     calc.SetFirstNum ( DetectNumber("Input num (1) : ") );
+
+    // 演算子の入力
+    op = DetectOperator("Input operator (+, -, *, /) : ");
+
+    // 数値の入力2
     calc.SetSecoundNum ( DetectNumber("Input num (2) : ") );
 
-    // 入力された数値の表示
-    cout << "num (1) : " << calc.GetFirstNum() << endl;
-    cout << "num (2) : " << calc.GetSecoundNum() << endl;
-    
+    // 演算子と計算処理のマッピング
+    map<string, function<double()>> op_map = {
+        {"+", [&](){ return calc.CalcSum(); }},
+        {"-", [&](){ return calc.CalcMin(); }},
+        {"*", [&](){ return calc.CalcMult(); }},
+        {"/", [&](){ return calc.CalcDiv(); }}
+    };
+
+    cout << "Result: " << op_map[op]() << endl;
+
     return 0;
 }
