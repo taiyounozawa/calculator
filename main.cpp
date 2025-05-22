@@ -4,13 +4,18 @@ using namespace std;
 
 int main()
 {
-    int a = 0;
-    int b = 0;
-    //std::string str = "";
-    cout << "å…¥åŠ›1ï¼š";
-    cout << "å…¥åŠ›2ï¼š";
-    cin >> a;
-    cout << a << endl;
+    // “ü—Í•Ï”‚Ì—pˆÓ
+    int num1 = 0;
+    int num2 = 0;
+    
+    // ”’l‚Ì“ü—Í
+    cout << "input num (1) : ";
+    cin >> num1;
+    cout << "input num (2) : ";
+    cin >> num2;
+
+    // “ü—Í‚³‚ê‚½”’l‚Ì•\¦
+    cout << num1 << " " << num2 << endl;
     
     return 0;
 }
