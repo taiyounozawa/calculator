@@ -5,10 +5,12 @@ using namespace std;
 int main()
 {
     int a = 0;
+    int b = 0;
     //std::string str = "";
-    std::cout << "入力：";
-    std::cin >> a;
-    std::cout << a << std::endl;
+    cout << "入力1：";
+    cout << "入力2：";
+    cin >> a;
+    cout << a << endl;
     
     return 0;
 }
