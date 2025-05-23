@@ -1,4 +1,6 @@
 # include "calc.h"
+#include <stdexcept>
+using namespace std;
 
 double Calc::GetFirstNum()
 {
@@ -37,5 +39,15 @@ double Calc::CalcMult()
 
 double Calc::CalcDiv()
 {
+    try{
+        // 0‚ÅŠ„‚éê‡‚Ì—áŠOˆ—
+        if (this->GetSecoundNum() == 0) {
+            throw invalid_argument("Division by zero is not allowed.");
+        }
+    } catch (const invalid_argument& e) {
+        cerr << e.what() << endl;
+        exit(0); // —áŠO‚ª”­¶‚µ‚½ê‡‚Í0‚ð•Ô‚·
+    }
+
     return this->GetFirstNum() / this->GetSecoundNum();
 }
