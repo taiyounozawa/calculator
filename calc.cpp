@@ -1,5 +1,6 @@
 # include "calc.h"
 #include <stdexcept>
+#include <iostream>
 using namespace std;
 
 double Calc::GetFirstNum()
